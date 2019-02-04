@@ -13,6 +13,19 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
+	
+	<repositories>
+		<repository>
+    		<id>jcenter</id>
+    		<name>JCenter</name>
+    		<url>http://jcenter.bintray.com</url>
+		</repository>
+		<repository> <!-- Required for OkHTTP 3.13.0-SNAPSHOT -->
+    		<id>sonatype</id>
+    		<name>sonatype-snapshots</name>
+   			 <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+		</repository>
+	</repositories>	
 
   <dependencies>
     <dependency>
@@ -21,5 +34,11 @@
       <version>3.8.1</version>
       <scope>test</scope>
     </dependency>
+   <dependency>
+		<groupId>net.dv8tion</groupId>
+    	<artifactId>JDA</artifactId>
+    	<version>3.5.1</version>
+	</dependency>
   </dependencies>
+  
 </project>
