@@ -16,6 +16,7 @@ public class ModBot {
     try {
       builder.setToken("").setAutoReconnect(true).setStatus(OnlineStatus.ONLINE);
       jda = builder.build();
+
     } catch (Exception e) {
       e.printStackTrace();
     }
