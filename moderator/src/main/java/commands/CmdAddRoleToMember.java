@@ -1,3 +1,4 @@
+
 package commands;
 
 import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
@@ -5,7 +6,7 @@ import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 public class CmdAddRoleToMember implements Command {
 
   public boolean called(String[] args, GuildMessageReceivedEvent event) {
-    // TODO Auto-generated method stub
+
     return false;
   }
 
