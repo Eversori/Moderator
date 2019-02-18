@@ -27,6 +27,4 @@ public class MemberFactory {
       return null;
     }
   }
-
-  //public static boolean memberContainment(Array)
 }
