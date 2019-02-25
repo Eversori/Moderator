@@ -1,14 +1,37 @@
 package listener;
 
+import ModeratorBot.moderator.ILogMain;
+import factories.MemberFactory;
 import net.dv8tion.jda.core.events.user.update.UserUpdateNameEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
+import net.dv8tion.jda.core.managers.GuildController;
+import util.IDiscordId;
+import util.PrivateMessageWriter;
+import util.log.ELogMsgType;
+import util.log.LogController;
+import util.log.Logger;
 
 public class NameChangeListener extends ListenerAdapter
 {
 	@Override
 	public void onUserUpdateName(UserUpdateNameEvent event)
 	{
-		// TODO Auto-generated method stub
-		super.onUserUpdateName(event);
+		PrivateMessageWriter writer = new PrivateMessageWriter(event.getEntity());
+		Logger log = LogController.getLogger(ILogMain.NUM, ILogMain.NAME);
+		GuildController controller = event.getJDA().getGuildById(IDiscordId.HOST_GUILD_ID).getController();
+		String msg = "";
+		String newName = event.getNewName();
+		String oldName = event.getOldName();
+		String id = event.getEntity().getId();
+
+		if (MemberFactory.changeName(id, newName))
+		{
+			msg = oldName + IStaticListener.NAME_CHANGE_SUC + newName;
+			log.addLogMessage(msg, ELogMsgType.SUCCESS, this.toString(), ILogMain.NAME_CHANGE);
+		}
+		else
+		{
+
+		}
 	}
 }
