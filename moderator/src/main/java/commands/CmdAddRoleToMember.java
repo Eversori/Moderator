@@ -6,6 +6,7 @@ import factories.RoleFactory;
 import lib.ModBotMember;
 import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.core.managers.GuildController;
+import util.DiscordWriter;
 import util.log.ELogMsgType;
 import util.log.LogController;
 import util.log.Logger;
@@ -28,11 +29,14 @@ public class CmdAddRoleToMember implements Command {
 
   public void action(String[] args, GuildMessageReceivedEvent event) {
     GuildController gc = event.getGuild().getController();
+    DiscordWriter writer = new DiscordWriter(event.getChannel());
     try {
       gc.addSingleRoleToMember(MemberFactory.getMemberByEName(args[1]).getMember(), RoleFactory.getRoleByName(args[1]));
+      writer.writeInfo(args[0] + " was successfully assigned to " + args[1] + ".");
     } catch (Exception e) {
       e.printStackTrace();
     }
+    writer = null;
   }
 
   public void executed(boolean success, GuildMessageReceivedEvent event) {

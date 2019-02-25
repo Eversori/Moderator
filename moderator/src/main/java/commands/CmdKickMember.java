@@ -7,6 +7,7 @@ import net.dv8tion.jda.core.entities.Channel;
 import net.dv8tion.jda.core.entities.Member;
 import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.core.managers.GuildController;
+import util.DiscordWriter;
 import util.IDiscordId;
 import util.log.ELogMsgType;
 import util.log.LogController;
@@ -29,19 +30,21 @@ public class CmdKickMember implements Command {
   }
 
   public void action(String[] args, GuildMessageReceivedEvent event) {
+    Channel channel = event.getChannel();
+    GuildController gc = event.getGuild().getController();
+    DiscordWriter writer = new DiscordWriter(event.getChannel());
     try {
-      Channel channel = event.getChannel();
-      GuildController gc = event.getGuild().getController();
       int i = 0;
-      // channel.getMembers().stream().filter(item -> item.getEffectiveName().equals(anObject)).findAny().isPresent();
       for (Member m : channel.getMembers()) {
         if (m.getEffectiveName().equals(args[i++])) {
           gc.moveVoiceMember(m, event.getGuild().getVoiceChannelById(IDiscordId.KICK_CHANNEL_ID));
         }
       }
+      writer.writeInfo(args[0] + " was kicked.");
     } catch (Exception e) {
       e.printStackTrace();
     }
+    writer = null;
   }
 
   public void executed(boolean success, GuildMessageReceivedEvent event) {
