@@ -54,4 +54,10 @@ public class TextChannelCollection {
       return false;
     }
   }
+
+  public void removeTxtChannel(TextChannel channel) {
+    if (col.containsFirstKey(channel.getId())) {
+      col.remove(channel.getId(), channel.getName());
+    }
+  }
 }

@@ -33,7 +33,7 @@ public class MemberFactory {
     if (memberC.containsId(id)) {
       member = memberC.getMemberById(id);
       member.setName(newName);
-      memberC.removeMember(id);
+      memberC.removeMember(member);
       memberC.addMember(member);
       return true;
     } else {

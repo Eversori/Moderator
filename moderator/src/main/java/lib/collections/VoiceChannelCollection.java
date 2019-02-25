@@ -54,4 +54,10 @@ public class VoiceChannelCollection {
       return false;
     }
   }
+
+  public void removeVoiceChannel(VoiceChannel channel) {
+    if (col.containsFirstKey(channel.getId())) {
+      col.remove(channel.getId(), channel.getName());
+    }
+  }
 }

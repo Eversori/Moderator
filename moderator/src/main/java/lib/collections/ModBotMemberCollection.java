@@ -75,7 +75,9 @@ public class ModBotMemberCollection {
     return col.containsSecondKey(name);
   }
 
-  public void removeMember(String id) {
-    col.remove(id);
+  public void removeMember(ModBotMember member) {
+    if (col.containsFirstKey(member.getMember().getUser().getId())) {
+      col.remove(member.getMember().getUser().getId(), member.getName());
+    }
   }
 }
