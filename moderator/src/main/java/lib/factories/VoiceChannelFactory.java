@@ -1,5 +1,5 @@
 
-package factories;
+package lib.factories;
 
 import lib.collections.VoiceChannelCollection;
 import net.dv8tion.jda.core.entities.Guild;

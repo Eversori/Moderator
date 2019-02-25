@@ -1,5 +1,5 @@
 
-package factories;
+package lib.factories;
 
 import java.awt.Color;
 import lib.collections.RoleCollection;

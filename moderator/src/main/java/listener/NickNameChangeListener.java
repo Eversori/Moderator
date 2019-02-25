@@ -1,7 +1,7 @@
 package listener;
 
 import ModeratorBot.moderator.ILogMain;
-import factories.MemberFactory;
+import lib.factories.MemberFactory;
 import net.dv8tion.jda.core.entities.TextChannel;
 import net.dv8tion.jda.core.entities.User;
 import net.dv8tion.jda.core.events.guild.member.GuildMemberNickChangeEvent;

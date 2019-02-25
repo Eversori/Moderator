@@ -1,7 +1,7 @@
 package listener;
 
 import ModeratorBot.moderator.ILogMain;
-import factories.MemberFactory;
+import lib.factories.MemberFactory;
 import net.dv8tion.jda.core.entities.Member;
 import net.dv8tion.jda.core.events.user.update.UserUpdateNameEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;

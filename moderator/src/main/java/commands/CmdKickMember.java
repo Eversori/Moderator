@@ -1,8 +1,8 @@
 
 package commands;
 
-import factories.MemberFactory;
 import lib.ModBotMember;
+import lib.factories.MemberFactory;
 import net.dv8tion.jda.core.entities.Channel;
 import net.dv8tion.jda.core.entities.Member;
 import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;

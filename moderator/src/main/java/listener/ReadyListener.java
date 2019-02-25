@@ -2,7 +2,7 @@ package listener;
 
 import java.io.File;
 import ModeratorBot.moderator.IStaticMain;
-import factories.MemberFactory;
+import lib.factories.MemberFactory;
 import net.dv8tion.jda.core.entities.Guild;
 import net.dv8tion.jda.core.events.ReadyEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;

@@ -1,5 +1,5 @@
 
-package factories;
+package lib.factories;
 
 import lib.ModBotMember;
 import lib.collections.ModBotMemberCollection;
