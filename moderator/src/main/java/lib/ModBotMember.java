@@ -8,30 +8,30 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 
+import net.dv8tion.jda.core.entities.Member;
 import net.dv8tion.jda.core.entities.Role;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 public class ModBotMember {
   @XmlElement
-  private String id;
-  @XmlElement
   private List<Role> roleList = new ArrayList<Role>();
   @XmlElement
   private String name;
+  private Member member;
 
-  public ModBotMember(String id, List<Role> roleList, String name) {
+  public ModBotMember(Member member, List<Role> roleList, String name) {
     super();
-    this.id = id;
+    this.member = member;
     this.roleList = roleList;
     this.name = name;
   }
 
-  public String getId() {
-    return id;
+  public Member getMember() {
+    return member;
   }
 
-  public void setId(String id) {
-    this.id = id;
+  public void setMember(Member member) {
+    this.member = member;
   }
 
   public List<Role> getRoleList() {
