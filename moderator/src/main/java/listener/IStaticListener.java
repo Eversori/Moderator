@@ -10,4 +10,8 @@ public interface IStaticListener
 	public final static String	NAME_CHANGE_SUC				= " changed his name to ";
 	public final static String	NAME_CHANGE_IN_USE			= " is already in use";
 	public final static String	NAME_CHANGE_TAKE_OTHER		= "Please select an other name";
+	public final static String	ROLE_CREATION_ADD_SUC		= "Role has been added to the map";
+	public final static String	ROLE_CREATION_ADD_FAIL		= "Role has not been added to the map.";
+	public final static String	ROLE_DELETION_RM_SUC		= "Role has been removed from the map";
+	public final static String	ROLE_DELETION_RM_FAIL		= "Role has not been removed from the map";
 }
