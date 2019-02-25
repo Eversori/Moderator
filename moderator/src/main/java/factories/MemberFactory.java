@@ -2,7 +2,7 @@
 package factories;
 
 import lib.ModBotMember;
-import lib.ModBotMemberCollection;
+import lib.collections.ModBotMemberCollection;
 import net.dv8tion.jda.core.entities.Guild;
 import net.dv8tion.jda.core.entities.Member;
 
@@ -13,7 +13,7 @@ public class MemberFactory {
     for (Member member : guild.getMembers()) {
       String id = member.getUser().getId();
       if (!memberC.containsId(id)) {
-        ModBotMember mbm = new ModBotMember(id, member.getRoles(), member.getEffectiveName());
+        ModBotMember mbm = new ModBotMember(member, member.getRoles(), member.getEffectiveName());
         memberC.addMember(mbm);
       }
     }

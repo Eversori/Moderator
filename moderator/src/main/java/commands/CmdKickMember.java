@@ -15,13 +15,15 @@ import util.log.Logger;
 public class CmdKickMember implements Command {
   Logger logger = LogController.getLogger(ILogCommand.LOG_ID, ILogCommand.NAME);
 
+  //!Kick member
   public boolean called(String[] args, GuildMessageReceivedEvent event) {
     ModBotMember mbm = MemberFactory.getMemberByID(event.getAuthor().getId());
     boolean bool = false;
     if (mbm != null) {
-      if (args.length >= 1 && args.length <= 5) {
-        bool = true;
-      }
+      if (event.getChannel().getMembers().contains(MemberFactory.getMemberByEName(args[0]).getMember()))
+        if (args.length >= 1 && args.length <= 5) {
+          bool = true;
+        }
     }
     return bool;
   }

@@ -1,5 +1,5 @@
 
-package lib;
+package lib.collections;
 
 import java.util.HashMap;
 
