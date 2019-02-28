@@ -82,7 +82,7 @@ public class RoleCollection
 
 	public void removeRole(Role role)
 	{
-		if (col.containsFirstKey(role.getId()) && col.containsSecondKey(role.getName()))
+		if (col.containsFirstKey(role.getId()) || col.containsSecondKey(role.getName()))
 		{
 			col.remove(role.getId(), role.getName());
 		}

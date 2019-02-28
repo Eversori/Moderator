@@ -18,4 +18,13 @@ public interface IStaticListener
 	public final static String	TEXT_CHANNEL_CREATION_ADD_FAIL	= "TextChannel has not been added to the map";
 	public final static String	TEXT_CHANNEL_DELETION_RM_SUC	= "TextChannel has been removed from the map";
 	public final static String	TEXT_CHANNEL_DELETION_RM_FAIL	= "TextChannel has not been removed from the map";
+	public final static String	TEXT_CHANNEL_NAME_IN_USE		= "Name of TextChannel is already in use. Please, try an other name";
+	public final static String	TEXT_CHANNEL_DELETED			= "VoiceChannel was deleted";
+	public final static String	VC_CHANNEL_CREATION_ADD_SUC		= "VoiceChannel has been added to the map";
+	public final static String	VC_CHANNEL_CREATION_ADD_FAIL	= "VoiceChannel has not been added to the map";
+	public final static String	VC_CHANNEL_DELETION_RM_SUC		= "VoiceChannel has been removed from the map";
+	public final static String	VC_CHANNEL_DELETION_RM_FAIL		= "VoiceChannel has not been removed from the map";
+	public final static String	VC_CHANNEL_NAME_IN_USE			= "Name of VoiceChannel is already in use. Please, try an other name";
+	public final static String	VC_CHANNEL_DELETED				= "VoiceChannel was deleted";
+	public final static String	MEMBER_JOIN_NAME_IN_USE			= "Sorry, but your name is already in use. Automaticly changed to ";
 }
