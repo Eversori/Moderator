@@ -3,8 +3,8 @@ package commands;
 
 import lib.ModBotMember;
 import lib.factories.MemberFactory;
-import net.dv8tion.jda.core.entities.Channel;
 import net.dv8tion.jda.core.entities.Member;
+import net.dv8tion.jda.core.entities.TextChannel;
 import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.core.managers.GuildController;
 import util.DiscordWriter;
@@ -30,9 +30,9 @@ public class CmdKickMember implements Command {
   }
 
   public void action(String[] args, GuildMessageReceivedEvent event) {
-    Channel channel = event.getChannel();
+    TextChannel channel = event.getChannel();
     GuildController gc = event.getGuild().getController();
-    DiscordWriter writer = new DiscordWriter(event.getChannel());
+    DiscordWriter writer = new DiscordWriter(channel);
     try {
       int i = 0;
       for (Member m : channel.getMembers()) {

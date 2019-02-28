@@ -29,4 +29,12 @@ public class VoiceChannelFactory {
       return null;
     }
   }
+
+  public static boolean removeVoiceChannel(VoiceChannel channel) {
+    return voiceChannelC.removeVoiceChannel(channel);
+  }
+
+  public static boolean addVoiceChannel(VoiceChannel channel) {
+    return voiceChannelC.addVoiceChannel(channel);
+  }
 }
