@@ -1,4 +1,4 @@
-package listener;
+package listener.voiceChannel;
 
 import net.dv8tion.jda.core.events.channel.voice.VoiceChannelDeleteEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;

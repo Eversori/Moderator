@@ -55,15 +55,7 @@ public class RoleFactory
 
 	public static boolean addRole(Role role)
 	{
-		if (roleC.containsId(role.getId()) && roleC.containsName(role.getName()))
-		{
-			return false;
-		}
-		else
-		{
-			roleC.addRole(role);
-			return true;
-		}
+		return roleC.addRole(role);
 	}
 
 	public static boolean removeRole(Role role)

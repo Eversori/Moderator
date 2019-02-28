@@ -1,7 +1,8 @@
-package listener;
+package listener.role;
 
 import ModeratorBot.moderator.ILogMain;
 import lib.factories.RoleFactory;
+import listener.IStaticListener;
 import net.dv8tion.jda.core.events.role.RoleCreateEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 import util.log.ELogMsgType;

@@ -16,7 +16,7 @@ public class RoleCollection
 	{
 		if (role != null)
 		{
-			if (!col.containsFirstKey(role.getId()) || !col.containsSecondKey(role.getName()))
+			if (!col.containsFirstKey(role.getId()) && !col.containsSecondKey(role.getName()))
 			{
 				col.add(role, role.getId(), role.getName());
 				return true;

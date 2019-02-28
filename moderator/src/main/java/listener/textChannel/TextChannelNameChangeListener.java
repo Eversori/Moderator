@@ -1,4 +1,4 @@
-package listener;
+package listener.textChannel;
 
 import net.dv8tion.jda.core.events.channel.text.update.TextChannelUpdateNameEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
