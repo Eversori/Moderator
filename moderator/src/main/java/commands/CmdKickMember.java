@@ -3,8 +3,6 @@ package commands;
 
 import lib.ModBotMember;
 import lib.factories.MemberFactory;
-import net.dv8tion.jda.core.entities.Member;
-import net.dv8tion.jda.core.entities.TextChannel;
 import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.core.managers.GuildController;
 import util.DiscordWriter;
@@ -15,32 +13,37 @@ import util.log.Logger;
 
 public class CmdKickMember implements Command {
   Logger logger = LogController.getLogger(ILogCommand.LOG_ID, ILogCommand.NAME);
+  DiscordWriter writer = null;
 
   //!Kick member
   public boolean called(String[] args, GuildMessageReceivedEvent event) {
     ModBotMember mbm = MemberFactory.getMemberByID(event.getAuthor().getId());
+    writer = new DiscordWriter(event.getChannel());
     boolean bool = false;
     if (mbm != null) {
       if (event.getChannel().getMembers().contains(MemberFactory.getMemberByEName(args[0]).getMember()))
-        if (args.length >= 1 && args.length <= 5) {
+        if (args.length >= 1) {
           bool = true;
+        } else {
+          writer.writeError(IStaticCommand.CMD_KICK_WRONG_PATTERN);
+          logger.addState(IStaticCommand.CMD_KICK_WRONG_PATTERN, this.toString());
+          bool = false;
         }
+      else {
+        writer.writeError(args[0] + IStaticCommand.CMD_KICK_MEMBER_DONT_EXISTS);
+        logger.addState(args[0] + IStaticCommand.CMD_KICK_MEMBER_DONT_EXISTS, this.toString());
+        bool = false;
+      }
     }
     return bool;
   }
 
   public void action(String[] args, GuildMessageReceivedEvent event) {
-    TextChannel channel = event.getChannel();
     GuildController gc = event.getGuild().getController();
-    DiscordWriter writer = new DiscordWriter(channel);
     try {
-      int i = 0;
-      for (Member m : channel.getMembers()) {
-        if (m.getEffectiveName().equals(args[i++])) {
-          gc.moveVoiceMember(m, event.getGuild().getVoiceChannelById(IDiscordId.KICK_CHANNEL_ID));
-        }
-      }
-      writer.writeInfo(args[0] + " was kicked.");
+      gc.moveVoiceMember(MemberFactory.getMemberByEName(args[0]).getMember(), event.getGuild().getVoiceChannelById(IDiscordId.KICK_CHANNEL_ID));
+      writer.writeInfo(args[0] + IStaticCommand.CMD_KICK_MEMBER_DONT_EXISTS);
+      logger.addState(args[0] + IStaticCommand.CMD_KICK_MEMBER_DONT_EXISTS, this.toString());
     } catch (Exception e) {
       e.printStackTrace();
     }
@@ -53,6 +56,8 @@ public class CmdKickMember implements Command {
     } else {
       logger.addLogMessage(ILogCommand.CMD_KICK_FAILED, ELogMsgType.STATE, this.toString(), ILogCommand.CMD_EXE);
     }
+    writer = null;
+    logger = null;
   }
 
   public String help() {

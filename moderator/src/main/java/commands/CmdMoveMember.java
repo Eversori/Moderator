@@ -23,10 +23,21 @@ public class CmdMoveMember implements Command {
     if (mbm != null) {
       if (VoiceChannelFactory.getVoiceChannelByName(args[0]) != null) {
         if (args.length >= 2 && args.length <= 7) {
-          bool = true;
+          if (MemberFactory.list(args)) {
+            bool = true;
+          } else {
+            writer.writeError(IStaticCommand.CMD_MOVE_MEMBER_DONT_EXIST);
+            logger.addState(IStaticCommand.CMD_MOVE_MEMBER_DONT_EXIST, this.toString());
+          }
         } else {
-          writer.writeError("");
+          writer.writeError(IStaticCommand.CMD_MOVE_WRONG_PATTERN);
+          logger.addState(IStaticCommand.CMD_MOVE_WRONG_PATTERN, this.toString());
+          bool = false;
         }
+      } else {
+        writer.writeError(args[0] + IStaticCommand.CMD_MOVE_CHANNEL_DONT_EXISTS);
+        logger.addState(IStaticCommand.CMD_MOVE_CHANNEL_DONT_EXISTS, this.toString());
+        bool = false;
       }
     }
     return bool;
@@ -34,19 +45,17 @@ public class CmdMoveMember implements Command {
 
   public void action(String[] args, GuildMessageReceivedEvent event) {
     GuildController gc = event.getGuild().getController();
-    DiscordWriter writer = new DiscordWriter(event.getChannel());
     StringBuilder namen = new StringBuilder();
     try {
       for (int i = 1; i <= args.length; i++) {
         gc.moveVoiceMember(MemberFactory.getMemberByEName(args[i]).getMember(), VoiceChannelFactory.getVoiceChannelByName(args[0]));
         namen.append(args[i]);
       }
-      writer.writeInfo(namen + " were moved to " + args[0] + ".");
+      writer.writeInfo(namen + IStaticCommand.CMD_MOVE_SUC + args[0] + ".");
+      logger.addState(namen + IStaticCommand.CMD_MOVE_SUC + args[0] + ".", this.toString());
     } catch (Exception e) {
       e.printStackTrace();
     }
-    writer = null;
-    namen = null;
   }
 
   public void executed(boolean success, GuildMessageReceivedEvent event) {
@@ -55,6 +64,8 @@ public class CmdMoveMember implements Command {
     } else {
       logger.addLogMessage(ILogCommand.CMD_MOVE_FAILED, ELogMsgType.STATE, this.toString(), ILogCommand.CMD_EXE);
     }
+    writer = null;
+    logger = null;
   }
 
   public String help() {

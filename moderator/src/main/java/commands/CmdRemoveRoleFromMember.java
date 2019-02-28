@@ -23,6 +23,8 @@ public class CmdRemoveRoleFromMember implements Command {
       if (RoleFactory.getRoleByName(args[0]) != null)
         if (args.length >= 2 && args.length <= 7) {
           bool = true;
+        } else {
+
         }
     }
     return bool;
