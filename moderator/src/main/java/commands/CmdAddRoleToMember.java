@@ -16,7 +16,7 @@ public class CmdAddRoleToMember implements Command {
   Logger logger = LogController.getLogger(ILogCommand.LOG_ID, ILogCommand.NAME);
   DiscordWriter writer = null;
 
-  //!Role role member
+  //!add role member
   public boolean called(String[] args, GuildMessageReceivedEvent event) {
     ModBotMember mbm = MemberFactory.getMemberByID(event.getAuthor().getId());
     writer = new DiscordWriter(event.getChannel());
