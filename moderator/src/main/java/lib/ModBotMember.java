@@ -41,6 +41,35 @@ public class ModBotMember
 		this.roleList = roleList;
 	}
 
+	public void addToRoleList(Role role)
+	{
+		if (!hasRole(role))
+		{
+			roleList.add(role);
+		}
+	}
+
+	private boolean hasRole(Role testRole)
+	{
+		String testId = testRole.getId();
+		boolean hasRole = false;
+
+		for (Role role : roleList)
+		{
+			String roleId = role.getId();
+			if (roleId.equals(testId))
+			{
+				hasRole = true;
+				break;
+			}
+			else
+			{
+				hasRole = false;
+			}
+		}
+		return hasRole;
+	}
+
 	public String getName()
 	{
 		return name;

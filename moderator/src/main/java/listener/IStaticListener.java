@@ -2,6 +2,8 @@ package listener;
 
 public interface IStaticListener
 {
+	public final static String	MEMBER_JOIN_NAME_CHANGE			= "change pls";
+
 	public final static String	NICK_CHANGE_USER				= "The member ";
 	public final static String	NICK_CHANGE_CALLS_HIMSELF		= " calls himself ";
 	public final static String	NICK_CHANGE_NICK				= "The nickname ";
@@ -27,4 +29,5 @@ public interface IStaticListener
 	public final static String	VC_CHANNEL_NAME_IN_USE			= "Name of VoiceChannel is already in use. Please, try an other name";
 	public final static String	VC_CHANNEL_DELETED				= "VoiceChannel was deleted";
 	public final static String	MEMBER_JOIN_NAME_IN_USE			= "Sorry, but your name is already in use. Automaticly changed to ";
+	public final static String	MEMBER_JOIN_ROLE_ADDED			= "The join-role was added to the new member";
 }

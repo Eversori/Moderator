@@ -15,4 +15,5 @@ public interface ILogMain
 	public static final String	TXT_CH_DELETE	= "TextChannel deletion";
 	public static final String	VC_CH_CREATE	= "VoiceChannel creation";
 	public static final String	VC_CH_DELETE	= "VoiceChannel deletion";
+	public static final String	MEMBER_JOIN		= "New Member join";
 }
