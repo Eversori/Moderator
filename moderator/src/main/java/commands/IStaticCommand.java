@@ -18,12 +18,14 @@ public interface IStaticCommand {
   public static String CMD_REMOVE_ROLE_WRONG_PATTERN = "Command Remove Role was wrong. Command RemoveRole: !remove role member";
   public static String CMD_REMOVE_ROLE_DONT_EXISTS = " role don´t exists.";
   public static String CMD_REMOVE_ROLE_MEMBER_DONT_EXISTS = " member don´t exists";
+  public static String CMD_REMOVE_ROLE_MEMBER_HAS_ROLE = " member already has this role!";
 
   //!role
   public static String CMD_ROLE_ROLE_SUC = " successfully added to ";
   public static String CMD_ROLE_ROLE_WRONG_PATTERN = "Command Add Role was wrong. Command AddRole: !role role member";
   public static String CMD_ROLE_ROLE_DONT_EXISTS = " role don´t exist.";
   public static String CMD_ROLE_ROLE_MEMBER_DONT_EXISTS = " member don´t exist";
+  public static String CMD_ROLE_MEMBER_HAS_ROLE = " member already has this role!";
 
   //!ban
   public static String CMD_BAN_SUC = " successfully banned.";
@@ -32,4 +34,7 @@ public interface IStaticCommand {
 
   //permission
   public static String CMD_PERM = "You don´t have permission to use this command!";
+
+  //membererror
+  public static String CMD_MEMBER_ERROR = "Member is null!";
 }

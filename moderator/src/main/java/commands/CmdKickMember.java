@@ -22,23 +22,25 @@ public class CmdKickMember implements Command {
     writer = new DiscordWriter(event.getChannel());
     boolean bool = false;
     if (mbm != null) {
-      if (mbm.getRoleList().contains(RoleFactory.getRoleById(IDiscordId.ADM_ROLE_ID)) || mbm.getRoleList().contains(RoleFactory.getRoleById(IDiscordId.MOD_ROLE_ID))) {
-        if (MemberFactory.getMemberByEName(args[0]) != null)
+      if (MemberFactory.getMemberByEName(args[0]) != null) {
+        if (mbm.hasRole(RoleFactory.getRoleById(IDiscordId.ADM_ROLE_ID)) || mbm.hasRole(RoleFactory.getRoleById(IDiscordId.MOD_ROLE_ID))) {
           if (args.length >= 1) {
             bool = true;
           } else {
             writer.writeError(IStaticCommand.CMD_KICK_WRONG_PATTERN);
             logger.addState(IStaticCommand.CMD_KICK_WRONG_PATTERN, this.toString());
-            bool = false;
           }
-        else {
-          writer.writeError(args[0] + IStaticCommand.CMD_KICK_MEMBER_DONT_EXISTS);
-          logger.addState(args[0] + IStaticCommand.CMD_KICK_MEMBER_DONT_EXISTS, this.toString());
-          bool = false;
+        } else {
+          writer.writeError(IStaticCommand.CMD_PERM);
+          logger.addState(IStaticCommand.CMD_PERM, this.toString());
         }
       } else {
-
+        writer.writeError(args[0] + IStaticCommand.CMD_KICK_MEMBER_DONT_EXISTS);
+        logger.addState(args[0] + IStaticCommand.CMD_KICK_MEMBER_DONT_EXISTS, this.toString());
       }
+    } else {
+      writer.writeError(IStaticCommand.CMD_MEMBER_ERROR);
+      logger.addState(IStaticCommand.CMD_MEMBER_ERROR, this.toString());
     }
     return bool;
   }

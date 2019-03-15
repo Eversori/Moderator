@@ -3,9 +3,11 @@ package commands;
 
 import lib.ModBotMember;
 import lib.factories.MemberFactory;
+import lib.factories.RoleFactory;
 import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.core.managers.GuildController;
 import util.DiscordWriter;
+import util.IDiscordId;
 import util.log.ELogMsgType;
 import util.log.LogController;
 import util.log.Logger;
@@ -20,17 +22,25 @@ public class CmdBanMember implements Command {
     writer = new DiscordWriter(event.getChannel());
     boolean bool = false;
     if (mbm != null) {
-      if (MemberFactory.getMemberByEName(args[0]) != null) {
-        if (args.length >= 1 && args.length <= 10) {
-          bool = true;
+      if (mbm.hasRole(RoleFactory.getRoleById(IDiscordId.ADM_ROLE_ID)) || mbm.hasRole(RoleFactory.getRoleById(IDiscordId.MOD_ROLE_ID))) {
+        if (MemberFactory.getMemberByEName(args[0]) != null) {
+          if (args.length >= 1 && args.length <= 10) {
+            bool = true;
+          } else {
+            writer.writeError(IStaticCommand.CMD_BAN_WRONG_PATTERN);
+            logger.addState(ILogCommand.CMD_BAN_FAILED, this.toString());
+          }
         } else {
-          writer.writeError(IStaticCommand.CMD_BAN_WRONG_PATTERN);
+          writer.writeError(args[1] + IStaticCommand.CMD_BAN_MEMBER_DONT_EXIST);
           logger.addState(ILogCommand.CMD_BAN_FAILED, this.toString());
         }
       } else {
-        writer.writeError(args[1] + IStaticCommand.CMD_BAN_MEMBER_DONT_EXIST);
-        logger.addState(ILogCommand.CMD_BAN_FAILED, this.toString());
+        writer.writeError(IStaticCommand.CMD_PERM);
+        logger.addState(IStaticCommand.CMD_PERM, this.toString());
       }
+    } else {
+      writer.writeError(IStaticCommand.CMD_MEMBER_ERROR);
+      logger.addState(IStaticCommand.CMD_MEMBER_ERROR, this.toString());
     }
     return bool;
   }

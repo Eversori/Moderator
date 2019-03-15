@@ -7,6 +7,7 @@ import lib.factories.RoleFactory;
 import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.core.managers.GuildController;
 import util.DiscordWriter;
+import util.IDiscordId;
 import util.log.ELogMsgType;
 import util.log.LogController;
 import util.log.Logger;
@@ -22,23 +23,35 @@ public class CmdRemoveRoleFromMember implements Command {
     writer = new DiscordWriter(event.getChannel());
     boolean bool = false;
     if (mbm != null) {
-      if (RoleFactory.getRoleByName(args[0]) != null) {
-        if (args.length >= 2 && args.length <= 7) {
-          if (MemberFactory.getMemberByEName(args[1]) != null) {
-            bool = true;
+      if (mbm.hasRole(RoleFactory.getRoleById(IDiscordId.ADM_ROLE_ID))) {
+        if (RoleFactory.getRoleByName(args[0]) != null) {
+          if (args.length >= 2 && args.length <= 7) {
+            if (MemberFactory.getMemberByEName(args[1]) != null) {
+              if (MemberFactory.getMemberByEName(args[1]).hasRole(RoleFactory.getRoleByName(args[0]))) {
+                bool = true;
+              } else {
+                writer.writeError(IStaticCommand.CMD_REMOVE_ROLE_MEMBER_HAS_ROLE);
+                logger.addState(IStaticCommand.CMD_REMOVE_ROLE_MEMBER_HAS_ROLE, this.toString());
+              }
+            } else {
+              writer.writeError(args[1] + IStaticCommand.CMD_REMOVE_ROLE_MEMBER_DONT_EXISTS);
+              logger.addState(args[1] + IStaticCommand.CMD_REMOVE_ROLE_MEMBER_DONT_EXISTS, this.toString());
+            }
           } else {
-            writer.writeError(args[1] + IStaticCommand.CMD_REMOVE_ROLE_MEMBER_DONT_EXISTS);
-            logger.addState(args[1] + IStaticCommand.CMD_REMOVE_ROLE_MEMBER_DONT_EXISTS, this.toString());
+            writer.writeError(IStaticCommand.CMD_REMOVE_ROLE_WRONG_PATTERN);
+            logger.addState(IStaticCommand.CMD_REMOVE_ROLE_WRONG_PATTERN, this.toString());
           }
         } else {
-          writer.writeError(IStaticCommand.CMD_REMOVE_ROLE_WRONG_PATTERN);
-          logger.addState(IStaticCommand.CMD_REMOVE_ROLE_WRONG_PATTERN, this.toString());
+          writer.writeError(args[0] + IStaticCommand.CMD_REMOVE_ROLE_DONT_EXISTS);
+          logger.addState(args[0] + IStaticCommand.CMD_REMOVE_ROLE_DONT_EXISTS, this.toString());
         }
       } else {
-        writer.writeError(args[0] + IStaticCommand.CMD_REMOVE_ROLE_DONT_EXISTS);
-        logger.addState(args[0] + IStaticCommand.CMD_REMOVE_ROLE_DONT_EXISTS, this.toString());
+        writer.writeError(IStaticCommand.CMD_PERM);
+        logger.addState(IStaticCommand.CMD_PERM, this.toString());
       }
-
+    } else {
+      writer.writeError(IStaticCommand.CMD_MEMBER_ERROR);
+      logger.addState(IStaticCommand.CMD_MEMBER_ERROR, this.toString());
     }
     return bool;
   }
