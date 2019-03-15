@@ -13,12 +13,13 @@ import util.log.LogController;
 import util.log.Logger;
 
 public class CmdAddRoleToMember implements Command {
-  Logger logger = LogController.getLogger(ILogCommand.LOG_ID, ILogCommand.NAME);
+  Logger logger = null;
   DiscordWriter writer = null;
 
   // !Role role member
   public boolean called(String[] args, GuildMessageReceivedEvent event) {
     ModBotMember mbm = MemberFactory.getMemberByID(event.getAuthor().getId());
+    logger = LogController.getLogger(ILogCommand.LOG_ID, ILogCommand.NAME);
     writer = new DiscordWriter(event.getChannel());
     boolean bool = false;
     if (mbm != null) {
