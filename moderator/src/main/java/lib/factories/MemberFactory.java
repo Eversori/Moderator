@@ -104,6 +104,12 @@ public class MemberFactory
 		return bool;
 	}
 
+	public static void removeMember(Member member)
+	{
+		ModBotMember mem = getMemberByID(member.getUser().getId());
+		memberC.removeMember(mem);
+	}
+
 	public static void addRoleToMember(Member member, Role role)
 	{
 		ModBotMember mbm = null;
