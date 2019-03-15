@@ -16,7 +16,7 @@ public class CmdAddRoleToMember implements Command {
   Logger logger = LogController.getLogger(ILogCommand.LOG_ID, ILogCommand.NAME);
   DiscordWriter writer = null;
 
-  //!add role member
+  // !Role role member
   public boolean called(String[] args, GuildMessageReceivedEvent event) {
     ModBotMember mbm = MemberFactory.getMemberByID(event.getAuthor().getId());
     writer = new DiscordWriter(event.getChannel());
@@ -58,7 +58,7 @@ public class CmdAddRoleToMember implements Command {
   public void action(String[] args, GuildMessageReceivedEvent event) {
     GuildController gc = event.getGuild().getController();
     try {
-      gc.addSingleRoleToMember(MemberFactory.getMemberByEName(args[1]).getMember(), RoleFactory.getRoleByName(args[1]));
+      gc.addSingleRoleToMember(MemberFactory.getMemberByEName(args[1]).getMember(), RoleFactory.getRoleByName(args[0])).queue();
       writer.writeInfo(args[0] + IStaticCommand.CMD_ROLE_ROLE_SUC + args[1] + ".");
       logger.addState(args[0] + IStaticCommand.CMD_ROLE_ROLE_SUC + args[1] + ".", this.toString());
     } catch (Exception e) {

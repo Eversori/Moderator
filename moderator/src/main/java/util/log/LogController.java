@@ -1,6 +1,8 @@
 package util.log;
 
 import java.util.HashMap;
+import ModeratorBot.moderator.ILogMain;
+import commands.ILogCommand;
 
 public class LogController
 {
@@ -28,5 +30,17 @@ public class LogController
 		}
 
 		return logger;
+	}
+
+	public static void printLogs()
+	{
+		if (loggerCollection.containsKey(ILogMain.NUM))
+		{
+			loggerCollection.get(ILogMain.NUM).getLog().printLog();
+		}
+		if (loggerCollection.containsKey(ILogCommand.LOG_ID))
+		{
+			loggerCollection.get(ILogCommand.LOG_ID).getLog().printLog();
+		}
 	}
 }

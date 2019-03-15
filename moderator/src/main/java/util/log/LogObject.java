@@ -13,6 +13,15 @@ public class LogObject
 		this.objectID = id;
 	}
 
+	@Override
+	public String toString()
+	{
+		String str = "";
+		str = str + objectID + ": ";
+		str = str + message + "caused by " + object + " - " + cause;
+		return str;
+	}
+
 	protected int getObjectID()
 	{
 		return objectID;

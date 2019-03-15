@@ -14,7 +14,7 @@ public class ReadyListener extends ListenerAdapter
 	@Override
 	public void onReady(ReadyEvent event)
 	{
-
+		System.out.println("hi");
 		Guild host = event.getJDA().getGuildById(IDiscordId.HOST_GUILD_ID);
 
 		MemberFactory.mapAllMember(host);

@@ -35,10 +35,10 @@ public class MemberJoinListener extends ListenerAdapter
 				String msg = IStaticListener.MEMBER_JOIN_NAME_IN_USE + changedName;
 				log.addLogMessage(msg, ELogMsgType.INFO, this.toString(), ILogMain.MEMBER_JOIN);
 				pmWrite.write(msg);
-				controller.setNickname(member, changedName);
+				controller.setNickname(member, changedName).queue();
 				MemberFactory.addMember(member);
 			}
-			controller.addSingleRoleToMember(member, joinRole);
+			controller.addSingleRoleToMember(member, joinRole).queue();
 			MemberFactory.addRoleToMember(member, joinRole);
 
 			log.addState(IStaticListener.MEMBER_JOIN_ROLE_ADDED, this.toString());

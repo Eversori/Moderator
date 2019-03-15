@@ -53,7 +53,7 @@ public class NickNameChangeListener extends ListenerAdapter
 		}
 		else
 		{
-			controller.setNickname(event.getMember(), oldName);
+			controller.setNickname(event.getMember(), oldName).queue();
 			msg = IStaticListener.NICK_CHANGE_NICK + newName + IStaticListener.NICK_CHANGE_IN_USE;
 			pwriter.write(msg);
 			log.addLogMessage(msg, ELogMsgType.ERROR, this.toString(), ILogMain.NICK_CHANGE);

@@ -56,7 +56,17 @@ public class Log
 
 	public void printLog()
 	{
-		// TODO: Not implemented
+		String out = "";
+		out = logID + " - " + logName + " \n";
+		out = out + "Entries: \n";
+
+		for (LogObject lo : logEntries)
+		{
+			out = out + lo.toString() + " \n";
+		}
+
+		out = out + "\n\n";
+		System.out.println(out);
 	}
 
 }
