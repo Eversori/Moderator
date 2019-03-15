@@ -56,9 +56,9 @@ public class MemberFactory
 
 	public static ModBotMember getMemberByEName(String effectivName)
 	{
-		if (memberC.containsId(effectivName))
+		if (memberC.containsName(effectivName))
 		{
-			return memberC.getMemberById(effectivName);
+			return memberC.getMemberByName(effectivName);
 		}
 		else
 		{
@@ -90,7 +90,7 @@ public class MemberFactory
 	public static boolean list(String[] args)
 	{
 		boolean bool = false;
-		for (int i = 0; i <= args.length; i++)
+		for (int i = 1; i < args.length; i++)
 		{
 			if (memberC.containsName(args[i]))
 			{

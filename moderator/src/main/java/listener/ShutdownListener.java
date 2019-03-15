@@ -8,7 +8,5 @@ public class ShutdownListener extends ListenerAdapter
 	@Override
 	public void onShutdown(ShutdownEvent event)
 	{
-		// TODO Auto-generated method stub
-		super.onShutdown(event);
 	}
 }

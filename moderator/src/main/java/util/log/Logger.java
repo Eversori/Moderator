@@ -9,6 +9,11 @@ public class Logger
 		log = new Log(id, name);
 	}
 
+	public Log getLog()
+	{
+		return log;
+	}
+
 	/**
 	 * Adds any logMessage
 	 * 

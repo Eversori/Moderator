@@ -10,8 +10,9 @@ public class CommandParser
 	private String						invoke		= "";
 	private GuildMessageReceivedEvent	event		= null;
 
-	public CommandParser(String raw)
+	public CommandParser(String raw, GuildMessageReceivedEvent event)
 	{
+		this.event = event;
 		this.parse(raw);
 	}
 
@@ -22,6 +23,7 @@ public class CommandParser
 	 */
 	private void parse(String raw)
 	{
+
 		beheaded = raw.replaceFirst(IStaticMain.PREFIX, "");
 
 		String beheadedSplit[] = beheaded.split(" ");

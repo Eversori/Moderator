@@ -24,7 +24,7 @@ public class CommandListener extends ListenerAdapter
 
 		if (raw.startsWith(IStaticMain.PREFIX) && !authorId.equals(selfId) && !author.hasRole(role))
 		{
-			CommandHandler.handleCommand(new CommandParser(raw));
+			CommandHandler.handleCommand(new CommandParser(raw, event));
 		}
 	}
 }

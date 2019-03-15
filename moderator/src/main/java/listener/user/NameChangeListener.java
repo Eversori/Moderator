@@ -36,7 +36,7 @@ public class NameChangeListener extends ListenerAdapter
 		}
 		else
 		{
-			controller.setNickname(member, oldName);
+			controller.setNickname(member, oldName).queue();
 
 			msg = newName + IStaticListener.NAME_CHANGE_IN_USE;
 			writer.write(msg);
