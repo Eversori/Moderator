@@ -11,12 +11,16 @@ public interface ILogCommand {
   //Messages
   public static String CMD_KICK_SUCCESS = "Command Kick Member was successfull.";
   public static String CMD_KICK_FAILED = "Command Kick Member failed.";
+
   public static String CMD_MOVE_SUCCESS = "Command Move Member was successfull.";
   public static String CMD_MOVE_FAILED = "Command Move Member failed.";
+
   public static String CMD_ADD_ROLE_TO_MEMBER_SUCCESS = "Command Add Role To Member was successfull.";
   public static String CMD_ADD_ROLE_TO_MEMBER_FAILED = "Command Add Role To Member failed.";
+
   public static String CMD_REMOVE_ROLE_FROM_MEMBER_SUCCESS = "Command Remove Role From Member was successfull.";
   public static String CMD_REMOVE_ROLE_FROM_MEMBER_FAILED = "Command Remove Role From Member failed.";
+
   public static String CMD_BAN_SUCCESS = "Command Ban was successful.";
   public static String CMD_BAN_FAILED = "Command Ban failed.";
 

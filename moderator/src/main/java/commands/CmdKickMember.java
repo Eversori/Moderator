@@ -21,7 +21,7 @@ public class CmdKickMember implements Command {
     writer = new DiscordWriter(event.getChannel());
     boolean bool = false;
     if (mbm != null) {
-      if (event.getChannel().getMembers().contains(MemberFactory.getMemberByEName(args[0]).getMember()))
+      if (MemberFactory.getMemberByEName(args[0]) != null)
         if (args.length >= 1) {
           bool = true;
         } else {

@@ -12,26 +12,34 @@ import util.log.Logger;
 
 public class CmdBanMember implements Command {
   Logger logger = LogController.getLogger(ILogCommand.LOG_ID, ILogCommand.NAME);
+  DiscordWriter writer = null;
 
   //!Ban member (reason)
   public boolean called(String[] args, GuildMessageReceivedEvent event) {
     ModBotMember mbm = MemberFactory.getMemberByID(event.getAuthor().getId());
+    writer = new DiscordWriter(event.getChannel());
     boolean bool = false;
     if (mbm != null) {
-      if (MemberFactory.getMemberByEName(args[0]) != null)
+      if (MemberFactory.getMemberByEName(args[0]) != null) {
         if (args.length >= 1 && args.length <= 10) {
           bool = true;
+        } else {
+          writer.writeError(IStaticCommand.CMD_BAN_WRONG_PATTERN);
+          logger.addState(ILogCommand.CMD_BAN_FAILED, this.toString());
         }
+      } else {
+        writer.writeError(args[1] + IStaticCommand.CMD_BAN_MEMBER_DONT_EXIST);
+        logger.addState(ILogCommand.CMD_BAN_FAILED, this.toString());
+      }
     }
     return bool;
   }
 
   public void action(String[] args, GuildMessageReceivedEvent event) {
     GuildController gc = event.getGuild().getController();
-    DiscordWriter writer = new DiscordWriter(event.getChannel());
     String reason = null;
     try {
-      if (args.length >= 2) {
+      if (args.length > 2) {
         for (int i = 1; i <= args.length; i++) {
           reason = reason + " " + args[i];
         }
@@ -39,7 +47,7 @@ public class CmdBanMember implements Command {
       } else {
         gc.ban(MemberFactory.getMemberByEName(args[0]).getMember(), 1);
       }
-      writer.writeInfo(args[0] + " was successfully banned.");
+      writer.writeInfo(args[0] + IStaticCommand.CMD_BAN_SUC);
     } catch (Exception e) {
       e.printStackTrace();
     }
@@ -52,6 +60,8 @@ public class CmdBanMember implements Command {
     } else {
       logger.addLogMessage(ILogCommand.CMD_BAN_FAILED, ELogMsgType.STATE, this.toString(), ILogCommand.CMD_EXE);
     }
+    writer = null;
+    logger = null;
   }
 
   public String help() {
