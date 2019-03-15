@@ -30,4 +30,6 @@ public interface IStaticCommand {
   public static String CMD_BAN_WRONG_PATTERN = "Command Ban was wrong. Command Ban: !ban member (reason)";
   public static String CMD_BAN_MEMBER_DONT_EXIST = " member don´t exist.";
 
+  //permission
+  public static String CMD_PERM = "You don´t have permission to use this command!";
 }

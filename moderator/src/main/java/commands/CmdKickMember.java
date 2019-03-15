@@ -3,6 +3,7 @@ package commands;
 
 import lib.ModBotMember;
 import lib.factories.MemberFactory;
+import lib.factories.RoleFactory;
 import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.core.managers.GuildController;
 import util.DiscordWriter;
@@ -21,18 +22,22 @@ public class CmdKickMember implements Command {
     writer = new DiscordWriter(event.getChannel());
     boolean bool = false;
     if (mbm != null) {
-      if (MemberFactory.getMemberByEName(args[0]) != null)
-        if (args.length >= 1) {
-          bool = true;
-        } else {
-          writer.writeError(IStaticCommand.CMD_KICK_WRONG_PATTERN);
-          logger.addState(IStaticCommand.CMD_KICK_WRONG_PATTERN, this.toString());
+      if (mbm.getRoleList().contains(RoleFactory.getRoleById(IDiscordId.ADM_ROLE_ID)) || mbm.getRoleList().contains(RoleFactory.getRoleById(IDiscordId.MOD_ROLE_ID))) {
+        if (MemberFactory.getMemberByEName(args[0]) != null)
+          if (args.length >= 1) {
+            bool = true;
+          } else {
+            writer.writeError(IStaticCommand.CMD_KICK_WRONG_PATTERN);
+            logger.addState(IStaticCommand.CMD_KICK_WRONG_PATTERN, this.toString());
+            bool = false;
+          }
+        else {
+          writer.writeError(args[0] + IStaticCommand.CMD_KICK_MEMBER_DONT_EXISTS);
+          logger.addState(args[0] + IStaticCommand.CMD_KICK_MEMBER_DONT_EXISTS, this.toString());
           bool = false;
         }
-      else {
-        writer.writeError(args[0] + IStaticCommand.CMD_KICK_MEMBER_DONT_EXISTS);
-        logger.addState(args[0] + IStaticCommand.CMD_KICK_MEMBER_DONT_EXISTS, this.toString());
-        bool = false;
+      } else {
+
       }
     }
     return bool;
