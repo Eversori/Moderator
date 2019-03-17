@@ -5,7 +5,6 @@ import lib.ModBotMember;
 import lib.collections.ModBotMemberCollection;
 import net.dv8tion.jda.core.entities.Guild;
 import net.dv8tion.jda.core.entities.Member;
-import net.dv8tion.jda.core.entities.Role;
 
 public class MemberFactory
 {
@@ -108,17 +107,6 @@ public class MemberFactory
 	{
 		ModBotMember mem = getMemberByID(member.getUser().getId());
 		memberC.removeMember(mem);
-	}
-
-	public static void addRoleToMember(Member member, Role role)
-	{
-		ModBotMember mbm = null;
-
-		if (contains(member))
-		{
-			mbm = getMemberByEName(member.getEffectiveName());
-			mbm.addToRoleList(role);
-		}
 	}
 
 }

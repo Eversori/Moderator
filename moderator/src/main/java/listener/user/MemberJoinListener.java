@@ -39,7 +39,6 @@ public class MemberJoinListener extends ListenerAdapter
 				MemberFactory.addMember(member);
 			}
 			controller.addSingleRoleToMember(member, joinRole).queue();
-			MemberFactory.addRoleToMember(member, joinRole);
 
 			log.addState(IStaticListener.MEMBER_JOIN_ROLE_ADDED, this.toString());
 		}
