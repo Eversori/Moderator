@@ -4,7 +4,7 @@ package commands;
 public interface IStaticCommand {
   // !move
   public static String CMD_MOVE_SUC = " were moved to ";
-  public static String CMD_MOVE_WRONG_PATTERN = "Command Move Pattern was wrong. Command Move: !move member1 member2 member3 ...";
+  public static String CMD_MOVE_WRONG_PATTERN = "Command Move Pattern was wrong. Command Move: !move member1 member2 member3 ... member6";
   public static String CMD_MOVE_CHANNEL_DONT_EXISTS = " isn't a channel";
   public static String CMD_MOVE_MEMBER_DONT_EXIST = "Member doesn't exist.";
 
