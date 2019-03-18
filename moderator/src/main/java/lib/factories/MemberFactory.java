@@ -1,33 +1,34 @@
 
 package lib.factories;
 
+import java.util.HashMap;
+
 import lib.ModBotMember;
-import lib.collections.ModBotMemberCollection;
 import net.dv8tion.jda.core.entities.Guild;
 import net.dv8tion.jda.core.entities.Member;
 
 public class MemberFactory
 {
-	private static ModBotMemberCollection memberC = new ModBotMemberCollection();
+	private static HashMap<String, ModBotMember> memberC = new HashMap<>();
 
 	public static void mapAllMember(Guild guild)
 	{
 		for (Member member : guild.getMembers())
 		{
 			String id = member.getUser().getId();
-			if (!memberC.containsId(id))
+			if (!memberC.containsKey(id))
 			{
 				ModBotMember mbm = new ModBotMember(member);
-				memberC.addMember(mbm);
+				memberC.put(id,mbm);
 			}
 		}
 	}
 
 	public static ModBotMember getMemberByID(String id)
 	{
-		if (memberC.containsId(id))
+		if (memberC.containsKey(id))
 		{
-			return memberC.getMemberById(id);
+			return memberC.get(id);
 		}
 		else
 		{
@@ -35,55 +36,27 @@ public class MemberFactory
 		}
 	}
 
-	// public static boolean changeName(String oldName, String newName)
-	// {
-	// ModBotMember member = null;
-	//
-	// if (memberC.containsName(oldName))
-	// {
-	// if (!memberC.containsName(newName))
-	// {
-	// member = memberC.getMemberByName(oldName);
-	// memberC.removeMember(member);
-	// member.setName(newName);
-	// memberC.addMember(member);
-	// return true;
-	// }
-	// else
-	// {
-	// return false;
-	// }
-	// }
-	// else
-	// {
-	// return false;
-	// }
-	// }
-
-	public static ModBotMember getMemberByEName(String effectivName)
-	{
-		if (memberC.containsName(effectivName))
-		{
-			return memberC.getMemberByName(effectivName);
-		}
-		else
-		{
-			return null;
-		}
-	}
 
 	public static boolean addMember(Member member)
 	{
 		ModBotMember mbm = new ModBotMember(member);
-		return memberC.addMember(mbm);
+		String id = member.getUser().getId();
+		if(!memberC.containsKey(id))
+		{
+			memberC.put(id, mbm);
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 	}
 
 	public static boolean contains(Member member)
 	{
 		String userId = member.getUser().getId();
-		String userName = member.getEffectiveName();
 
-		if (memberC.containsId(userId) && memberC.containsName(userName))
+		if (memberC.containsKey(userId))
 		{
 			return true;
 		}
@@ -98,7 +71,7 @@ public class MemberFactory
 		boolean bool = false;
 		for (int i = 1; i < args.length; i++)
 		{
-			if (memberC.containsName(args[i]))
+			if (memberC.containsKey(args[i]))
 			{
 				bool = true;
 			}
@@ -113,8 +86,7 @@ public class MemberFactory
 
 	public static void removeMember(Member member)
 	{
-		ModBotMember mem = getMemberByID(member.getUser().getId());
-		memberC.removeMember(mem);
+		memberC.remove(member.getUser().getId());
 	}
 
 }
