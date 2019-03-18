@@ -8,14 +8,12 @@ import net.dv8tion.jda.core.entities.Role;
 public class ModBotMember
 {
 
-	private String	name;
-	private Member	member;
+	private Member member;
 
 	public ModBotMember(Member member)
 	{
 		super();
 		this.member = member;
-		this.name = member.getEffectiveName();
 	}
 
 	public Member getMember()
@@ -56,12 +54,12 @@ public class ModBotMember
 
 	public String getName()
 	{
-		return name;
+		return member.getUser().getName();
 	}
 
-	public void setName(String name)
+	public String getDiscriminator()
 	{
-		this.name = name;
+		return member.getUser().getDiscriminator();
 	}
 
 }

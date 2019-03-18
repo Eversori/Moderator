@@ -16,8 +16,7 @@ import listener.role.RoleDeletionListener;
 import listener.textChannel.TextChannelCreationListener;
 import listener.textChannel.TextChannelDeletionListener;
 import listener.user.MemberJoinListener;
-import listener.user.NameChangeListener;
-import listener.user.NickNameChangeListener;
+import listener.user.MemberRemoveListener;
 import listener.voiceChannel.VoiceChannelCreationListener;
 import listener.voiceChannel.VoiceChannelDeletionListener;
 import net.dv8tion.jda.core.AccountType;
@@ -61,9 +60,10 @@ public class ModBot
 
 	private static void addListener(JDABuilder builder)
 	{
-		builder.addEventListener(new CommandListener(), new NameChangeListener(), new NickNameChangeListener(),
-		        new ReadyListener(), new ReconnectedListener(), new RoleCreationListener(), new RoleDeletionListener(),
-		        new ShutdownListener(), new TextChannelCreationListener(), new TextChannelDeletionListener(),
-		        new VoiceChannelCreationListener(), new VoiceChannelDeletionListener(), new MemberJoinListener());
+		builder.addEventListener(new CommandListener(), new ReadyListener(), new ReconnectedListener(),
+		        new RoleCreationListener(), new RoleDeletionListener(), new ShutdownListener(),
+		        new TextChannelCreationListener(), new TextChannelDeletionListener(),
+		        new VoiceChannelCreationListener(), new VoiceChannelDeletionListener(), new MemberJoinListener(),
+		        new MemberRemoveListener());
 	}
 }

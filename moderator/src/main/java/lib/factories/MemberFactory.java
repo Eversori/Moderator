@@ -35,23 +35,30 @@ public class MemberFactory
 		}
 	}
 
-	public static boolean changeName(String id, String newName)
-	{
-		ModBotMember member = null;
-
-		if (memberC.containsId(id))
-		{
-			member = memberC.getMemberById(id);
-			member.setName(newName);
-			memberC.removeMember(member);
-			memberC.addMember(member);
-			return true;
-		}
-		else
-		{
-			return false;
-		}
-	}
+	// public static boolean changeName(String oldName, String newName)
+	// {
+	// ModBotMember member = null;
+	//
+	// if (memberC.containsName(oldName))
+	// {
+	// if (!memberC.containsName(newName))
+	// {
+	// member = memberC.getMemberByName(oldName);
+	// memberC.removeMember(member);
+	// member.setName(newName);
+	// memberC.addMember(member);
+	// return true;
+	// }
+	// else
+	// {
+	// return false;
+	// }
+	// }
+	// else
+	// {
+	// return false;
+	// }
+	// }
 
 	public static ModBotMember getMemberByEName(String effectivName)
 	{
@@ -98,6 +105,7 @@ public class MemberFactory
 			else
 			{
 				bool = false;
+				break;
 			}
 		}
 		return bool;

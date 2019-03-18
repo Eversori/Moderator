@@ -17,6 +17,17 @@ import util.log.Logger;
 
 public class NickNameChangeListener extends ListenerAdapter
 {
+	private static NickNameChangeListener instance = null;
+
+	public static NickNameChangeListener getInstance()
+	{
+		if (instance == null)
+		{
+			instance = new NickNameChangeListener();
+		}
+		return instance;
+	}
+
 	@Override
 	public void onGuildMemberNickChange(GuildMemberNickChangeEvent event)
 	{
@@ -45,7 +56,7 @@ public class NickNameChangeListener extends ListenerAdapter
 			newName = user.getName();
 		}
 
-		if (MemberFactory.changeName(id, newName))
+		if (MemberFactory.changeName(oldName, newName))
 		{
 			msg = IStaticListener.NICK_CHANGE_USER + oldName + IStaticListener.NICK_CHANGE_CALLS_HIMSELF + newName;
 			writer.writeInfo(msg);
@@ -54,6 +65,7 @@ public class NickNameChangeListener extends ListenerAdapter
 		else
 		{
 			controller.setNickname(event.getMember(), oldName).queue();
+
 			msg = IStaticListener.NICK_CHANGE_NICK + newName + IStaticListener.NICK_CHANGE_IN_USE;
 			pwriter.write(msg);
 			log.addLogMessage(msg, ELogMsgType.ERROR, this.toString(), ILogMain.NICK_CHANGE);

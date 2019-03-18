@@ -31,7 +31,7 @@ public class ModBotMemberCollection
 	 */
 	public boolean addMember(ModBotMember member)
 	{
-		String name = member.getName();
+		String name = "@" + member.getName() + member.getDiscriminator();
 		String id = member.getMember().getUser().getId();
 
 		if (!col.containsFirstKey(id) && !col.containsSecondKey(name))
