@@ -21,7 +21,12 @@ public interface ILogCommand {
   public static String CMD_REMOVE_ROLE_FROM_MEMBER_SUCCESS = "Command Remove Role From Member was successfull.";
   public static String CMD_REMOVE_ROLE_FROM_MEMBER_FAILED = "Command Remove Role From Member failed.";
 
-  public static String CMD_BAN_SUCCESS = "Command Ban was successful.";
+  public static String CMD_BAN_SUCCESS = "Command Ban was successfull.";
   public static String CMD_BAN_FAILED = "Command Ban failed.";
 
+  public static String CMD_MUTE_SUCCESS = "Command Mute was successfull.";
+  public static String CMD_MUTE_FAILED = "Command Mute failed.";
+
+  public static String CMD_DEAF_SUCCESS = "Command Deaf was successfull.";
+  public static String CMD_DEAF_FAILED = "Command Deaf failed.";
 }

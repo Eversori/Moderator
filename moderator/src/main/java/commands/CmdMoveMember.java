@@ -40,7 +40,7 @@ public class CmdMoveMember implements Command {
           }
         } else {
           writer.writeError(args[0] + IStaticCommand.CMD_MOVE_CHANNEL_DONT_EXISTS);
-          logger.addState(IStaticCommand.CMD_MOVE_CHANNEL_DONT_EXISTS, this.toString());
+          logger.addState(args[0] + IStaticCommand.CMD_MOVE_CHANNEL_DONT_EXISTS, this.toString());
           bool = false;
         }
       } else {
