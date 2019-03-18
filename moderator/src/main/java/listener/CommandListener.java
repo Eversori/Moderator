@@ -16,7 +16,7 @@ public class CommandListener extends ListenerAdapter
 	@Override
 	public void onGuildMessageReceived(GuildMessageReceivedEvent event)
 	{
-		String raw = event.getMessage().getContentDisplay();
+		String raw = event.getMessage().getContentRaw();
 		String authorId = event.getAuthor().getId();
 		String selfId = event.getJDA().getSelfUser().getId();
 		Role role = RoleFactory.getRoleById(IDiscordId.JOIN_ROLE_ID);
