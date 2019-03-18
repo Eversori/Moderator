@@ -2,6 +2,8 @@
 package lib.factories;
 
 import java.awt.Color;
+import java.util.HashMap;
+
 import lib.collections.RoleCollection;
 import net.dv8tion.jda.core.entities.Guild;
 import net.dv8tion.jda.core.entities.Role;
@@ -9,33 +11,21 @@ import net.dv8tion.jda.core.managers.GuildController;
 
 public class RoleFactory
 {
-	private static RoleCollection roleC = new RoleCollection();
+	private static HashMap<String, Role> roleC = new HashMap<>();
 
 	public static void mapAllRoles(Guild guild)
 	{
 		for (Role r : guild.getRoles())
 		{
-			roleC.addRole(r);
+			roleC.put(r.getId(),r);
 		}
 	}
 
 	public static Role getRoleById(String id)
 	{
-		if (roleC.containsId(id))
+		if (roleC.containsKey(id))
 		{
-			return roleC.getRoleById(id);
-		}
-		else
-		{
-			return null;
-		}
-	}
-
-	public static Role getRoleByName(String name)
-	{
-		if (roleC.containsName(name))
-		{
-			return roleC.getRoleByName(name);
+			return roleC.get(id);
 		}
 		else
 		{
@@ -48,21 +38,30 @@ public class RoleFactory
 		Role role = null;
 
 		role = controller.createRole().setName(name).setColor(color).complete();
-		roleC.addRole(role);
+		roleC.put(role.getId(),role);
 
 		return role;
 	}
 
 	public static boolean addRole(Role role)
 	{
-		return roleC.addRole(role);
+		if(!roleC.containsKey(role.getId()))
+		{
+			roleC.put(role.getId(), role);
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+		
 	}
 
 	public static boolean removeRole(Role role)
 	{
-		if (roleC.containsId(role.getId()) && roleC.containsName(role.getName()))
+		if (roleC.containsKey(role.getId()))
 		{
-			roleC.removeRole(role);
+			roleC.remove(role.getId());
 			return true;
 		}
 		else
