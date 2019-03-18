@@ -39,13 +39,13 @@ public class CmdBanMember implements Command
 					else
 					{
 						writer.writeError(IStaticCommand.CMD_BAN_WRONG_PATTERN);
-						logger.addState(ILogCommand.CMD_BAN_FAILED, this.toString());
+						logger.addState(IStaticCommand.CMD_BAN_WRONG_PATTERN, this.toString());
 					}
 				}
 				else
 				{
 					writer.writeError(args[0] + IStaticCommand.CMD_BAN_MEMBER_DONT_EXIST);
-					logger.addState(ILogCommand.CMD_BAN_FAILED, this.toString());
+					logger.addState(args[0] + IStaticCommand.CMD_BAN_MEMBER_DONT_EXIST, this.toString());
 				}
 			}
 			else
